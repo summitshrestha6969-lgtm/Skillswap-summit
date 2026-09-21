@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - SkillSwap</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <h1>Admin Dashboard</h1>
+  <div class="grid" id="dashboardStats"></div>
+
+  <div class="card top-gap">
+    <h3>📢 Send a broadcast announcement</h3>
+    <p class="muted small-text">Emailed to every active user and shown to anyone online next time they refresh.</p>
+    <label>Type</label>
+    <select id="announceType">
+      <option value="UPDATE">Product update</option>
+      <option value="DOWNTIME">Scheduled downtime</option>
+      <option value="GENERAL">General</option>
+    </select>
+    <label>Title</label>
+    <input type="text" id="announceTitle">
+    <label>Message</label>
+    <textarea id="announceBody"></textarea>
+    <button class="btn small" id="sendAnnouncementBtn">Send to everyone</button>
+    <div id="announceMsg" class="small-text"></div>
+  </div>
+
+  <div class="card top-gap">
+    <h3>🔴 Activity feed</h3>
+    <p class="muted small-text">Every match, message, session, rating, badge and reward redemption. Refreshes every 10s.</p>
+    <div class="admin-feed" id="adminFeed"></div>
+  </div>
+
+  <h2 class="section-title">All users</h2>
+  <div id="adminUserList"></div>
+</main>
+
+<footer>SkillSwap - A Community-Based Peer-to-Peer Skill Exchange Platform</footer>
+
+<script src="../js/backend.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

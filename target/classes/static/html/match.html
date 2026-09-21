@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversation - SkillSwap</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <button class="btn small secondary" id="backToMatchesBtn">← Back to matches</button>
+  <div class="card top-gap">
+    <h3 id="matchDetailTitle">Conversation</h3>
+    <div class="thread" id="thread"></div>
+    <div class="row">
+      <input type="text" id="messageInput" placeholder="Type a message...">
+      <button class="btn small" id="sendMessageBtn">Send</button>
+    </div>
+
+    <div class="section-block">
+      <h4>Schedule a session</h4>
+
+      <label>Delivery mode</label>
+      <div class="delivery-toggle">
+        <button type="button" class="delivery-btn selected" data-mode="ONLINE" id="modeOnlineBtn">🎥 Online video call</button>
+        <button type="button" class="delivery-btn" data-mode="OFFLINE" id="modeOfflineBtn">⬇️ Offline downloadable video</button>
+      </div>
+
+      <div class="row">
+        <input type="datetime-local" id="sessionDateTime">
+        <input type="text" id="sessionLocation" placeholder="Location / notes (e.g. Library, Zoom)">
+      </div>
+      <input type="text" id="sessionDownloadUrl" class="hidden top-gap" placeholder="Link to the downloadable video/resource">
+
+      <label class="top-gap">Capacity (1 = one-to-one swap, more = group class)</label>
+      <input type="number" min="1" max="50" id="sessionCapacity" value="1" class="small-input">
+
+      <div><button class="btn small top-gap" id="scheduleBtn">Schedule</button></div>
+      <div id="sessionInfo" class="session-info"></div>
+      <div class="action-btn-row" id="accessButtons"></div>
+      <div id="accessMsg" class="muted small-text"></div>
+    </div>
+
+    <div class="section-block" id="ratingBox">
+      <h4>Rate this session</h4>
+      <select id="ratingScore">
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Good</option>
+        <option value="3">3 - Okay</option>
+        <option value="2">2 - Poor</option>
+        <option value="1">1 - Very poor</option>
+      </select>
+      <textarea id="ratingComment" placeholder="Optional comment"></textarea>
+      <button class="btn small" id="submitRatingBtn">Submit rating</button>
+      <div id="ratingMsg" class="small-text"></div>
+    </div>
+  </div>
+</main>
+
+<footer>SkillSwap - A Community-Based Peer-to-Peer Skill Exchange Platform</footer>
+
+<script src="../js/backend.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/match.js"></script>
+</body>
+</html>
