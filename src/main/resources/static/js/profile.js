@@ -13,6 +13,8 @@ async function loadProfile() {
     ? "✅ Email verified - your skills are publicly searchable."
     : "⚠️ Email not verified yet - your skills won't appear in Browse until you verify. Check your email for the code.";
 
+  document.getElementById("bioInput").value = p.bio || "";
+
   profileState.offeredSkills = new Set(p.offeredSkills || []);
   profileState.wantedSkills = new Set(p.wantedSkills || []);
   renderTags("offeredTags", profileState.offeredSkills, "offered");
@@ -52,16 +54,19 @@ bindSkillInput("wantedInput", "wantedTags", "wanted");
 document.getElementById("saveSkillsBtn").onclick = async () => {
   const msgBox = document.getElementById("skillsMsg");
 
-  // Auto-commit any text still sitting in the input boxes that the user
-  // typed but never pressed Enter for - otherwise clicking Save would
-  // silently ignore it (or worse, overwrite existing skills with an
-  // incomplete list).
   commitPendingInput("offeredInput", "offeredTags", "offered");
   commitPendingInput("wantedInput", "wantedTags", "wanted");
 
   try {
-    await api("/users/me/skills", { method: "PUT", body: JSON.stringify({ offeredSkills: [...profileState.offeredSkills], wantedSkills: [...profileState.wantedSkills] }) });
-    msgBox.textContent = "Skills saved! Check the Leaderboard page to see your updated points.";
+    await api("/users/me/skills", {
+      method: "PUT",
+      body: JSON.stringify({
+        bio: document.getElementById("bioInput").value.trim(),
+        offeredSkills: [...profileState.offeredSkills],
+        wantedSkills: [...profileState.wantedSkills],
+      }),
+    });
+    msgBox.textContent = "Profile saved! Check the Leaderboard page to see your updated points.";
     msgBox.className = "small-text success-text";
   } catch (err) {
     msgBox.textContent = err.message;

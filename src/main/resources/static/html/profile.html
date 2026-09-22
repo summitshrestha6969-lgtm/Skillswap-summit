@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Profile - SkillSwap</title>
-<link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SkillSwap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <div id="site-header"></div>
 
 <main>
-  <h1>My Profile</h1>
-  <div id="welcomeBanner" class="card hidden" style="background:var(--primary-tint);border-color:var(--primary-light);">
-    🎉 Welcome to SkillSwap! You've already earned points for signing up. Add your skills and a photo below to earn more.
-  </div>
+    <h1>My Profile</h1>
+    <div id="welcomeBanner" class="card hidden" style="background:var(--primary-tint);border-color:var(--primary-light);">
+        🎉 Welcome to SkillSwap! You've already earned points for signing up. Add your skills and a photo below to earn more.
+    </div>
 
-  <div class="card">
-    <img id="profileAvatar" class="avatar" src="" alt="avatar">
-    <input type="file" id="imageInput" accept="image/*" class="file-input">
-    <button class="btn small" id="uploadImageBtn">Upload photo</button>
-    <p id="verifiedNote" class="small-text top-gap"></p>
-  </div>
+    <div class="card">
+        <img id="profileAvatar" class="avatar" src="" alt="avatar">
+        <div class="photo-upload-row">
+            <input type="file" id="imageInput" accept="image/*" class="file-input-hidden">
+            <label for="imageInput" class="choose-photo-btn">📷 Choose photo</label>
+        </div>
+        <button class="btn small top-gap" id="uploadImageBtn">Upload photo</button>
+        <p id="verifiedNote" class="small-text top-gap"></p>
+    </div>
 
-  <div class="card">
-    <h3>Skills I can teach</h3>
-    <input type="text" id="offeredInput" placeholder="Type a skill and press Enter" list="skillCatalogList">
-    <div id="offeredTags" class="top-gap"></div>
+    <div class="card">
+        <h3>About me</h3>
+        <label for="bioInput">Bio</label>
+        <textarea id="bioInput" placeholder="Tell other members a bit about yourself..." maxlength="500"></textarea>
+    </div>
 
-    <h3 class="section-title">Skills I want to learn</h3>
-    <input type="text" id="wantedInput" placeholder="Type a skill and press Enter" list="skillCatalogList">
-    <div id="wantedTags" class="top-gap"></div>
-    <datalist id="skillCatalogList"></datalist>
+    <div class="card">
+        <h3>Skills I can teach</h3>
+        <input type="text" id="offeredInput" placeholder="Type a skill and press Enter" list="skillCatalogList">
+        <div id="offeredTags" class="top-gap"></div>
 
-    <button class="btn" id="saveSkillsBtn">Save skills</button>
-    <div id="skillsMsg" class="small-text"></div>
-  </div>
+        <h3 class="section-title">Skills I want to learn</h3>
+        <input type="text" id="wantedInput" placeholder="Type a skill and press Enter" list="skillCatalogList">
+        <div id="wantedTags" class="top-gap"></div>
+        <datalist id="skillCatalogList"></datalist>
+
+        <button class="btn" id="saveSkillsBtn">Save profile</button>
+        <div id="skillsMsg" class="small-text"></div>
+    </div>
 </main>
 
 <footer>SkillSwap - A Community-Based Peer-to-Peer Skill Exchange Platform</footer>

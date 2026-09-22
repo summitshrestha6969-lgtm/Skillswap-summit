@@ -37,9 +37,9 @@ public class UserRestController {
 
     @GetMapping("/browse")
     public List<Map<String, Object>> browse(HttpServletRequest request,
-                              @RequestParam(required = false) String reviewsBucket,
-                              @RequestParam(required = false) Integer minEnrollments,
-                              @RequestParam(required = false, defaultValue = "false") boolean hasFeedback) {
+                                            @RequestParam(required = false) String reviewsBucket,
+                                            @RequestParam(required = false) Integer minEnrollments,
+                                            @RequestParam(required = false, defaultValue = "false") boolean hasFeedback) {
         User me = currentUser(request);
         return uRepo.findAll().stream()
                 .filter(u -> u.isActive() && u.isEmailVerified())
@@ -70,6 +70,12 @@ public class UserRestController {
 
         me.setOfferedSkills(resolveSkills(asStringSet(body.get("offeredSkills"))));
         me.setWantedSkills(resolveSkills(asStringSet(body.get("wantedSkills"))));
+
+        if (body.containsKey("bio")) {
+            Object bioRaw = body.get("bio");
+            String bio = bioRaw == null ? null : bioRaw.toString().trim();
+            me.setBio((bio == null || bio.isEmpty()) ? null : bio);
+        }
 
         boolean hasSkillsNow = !me.getOfferedSkills().isEmpty() && !me.getWantedSkills().isEmpty();
         if (!hadSkillsBefore && hasSkillsNow && !me.isAwardedProfileCompleteBonus()) {

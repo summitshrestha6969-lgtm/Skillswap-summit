@@ -75,7 +75,8 @@ function renderSuggestionsStrip(suggestions) {
     <div class="suggestion-strip-inner">
       ${suggestions.map(s => `
         <div class="suggestion-chip-card">
-          <img class="avatar" src="https://ui-avatars.com/api/?name=${encodeURIComponent(s.otherUserName)}&background=1e8f5e&color=fff" alt="">
+          <img class="avatar" src="/api/users/${s.otherUserId}/image"
+               onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(s.otherUserName)}&background=1e8f5e&color=fff';" alt="">
           <h5>${escapeHtml(s.otherUserName)}</h5>
           <span class="score-tag">${(s.matchScore * 100).toFixed(0)}% match</span>
           <button class="btn small propose-btn" data-user="${s.otherUserId}">Propose</button>
@@ -89,7 +90,8 @@ function renderSimilarSidebar(suggestions) {
   if (!suggestions.length) { el.innerHTML = `<p class="muted small-text">Add some skills to your profile to see similar people here.</p>`; return; }
   el.innerHTML = suggestions.slice(0, 6).map(s => `
     <div class="similar-item">
-      <img class="avatar" src="https://ui-avatars.com/api/?name=${encodeURIComponent(s.otherUserName)}&background=1e8f5e&color=fff" alt="">
+      <img class="avatar" src="/api/users/${s.otherUserId}/image"
+           onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(s.otherUserName)}&background=1e8f5e&color=fff';" alt="">
       <div class="info">
         <h5>${escapeHtml(s.otherUserName)}</h5>
         <div class="tag">${(s.matchScore * 100).toFixed(0)}% skill match</div>
